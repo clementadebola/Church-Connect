@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Church Connect | Usher CRM Registration</title>
+  <meta name="description" content="Register newcomers and members at church services and prepare for follow-up." />
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="theme-color" content="#0F1E3D" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+
+<body>
+  <!-- Icon sprite (Lucide-style line icons, no extra dependency) -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <symbol id="i-user-plus" viewBox="0 0 24 24">
+      <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+      <circle cx="9" cy="7" r="4" />
+      <line x1="19" x2="19" y1="8" y2="14" />
+      <line x1="22" x2="16" y1="11" y2="11" />
+    </symbol>
+    <symbol id="i-users" viewBox="0 0 24 24">
+      <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+      <circle cx="9" cy="7" r="4" />
+      <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+      <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+    </symbol>
+    <symbol id="i-check" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="10" />
+      <path d="m9 12 2 2 4-4" />
+    </symbol>
+    <symbol id="i-alert" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="10" />
+      <line x1="12" x2="12" y1="8" y2="12" />
+      <line x1="12" x2="12.01" y1="16" y2="16" />
+    </symbol>
+    <symbol id="i-lock" viewBox="0 0 24 24">
+      <rect width="18" height="11" x="3" y="11" rx="2" ry="2" />
+      <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+    </symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24">
+      <path d="M5 12h14" />
+      <path d="M12 5v14" />
+    </symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="10" />
+      <polyline points="12 6 12 12 16 14" />
+    </symbol>
+    <symbol id="i-inbox" viewBox="0 0 24 24">
+      <polyline points="22 12 16 12 14 15 10 15 8 12 2 12" />
+      <path
+        d="M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z" />
+    </symbol>
+    <symbol id="i-loader" viewBox="0 0 24 24">
+      <path d="M21 12a9 9 0 1 1-6.219-8.56" />
+    </symbol>
+    <symbol id="i-church" viewBox="0 0 24 24">
+      <path d="M12 2v6" />
+      <path d="M9.5 4.5h5" />
+      <path d="m5 21 .5-8L12 8l6.5 5 .5 8" />
+      <path d="M10 21v-4a2 2 0 0 1 4 0v4" />
+      <path d="M3 21h18" />
+    </symbol>
+  </svg>
+
+  <a class="skip-link" href="#main">Skip to the form</a>
+
+  <header class="site-header" id="siteHeader">
+    <div class="header-inner">
+      <a class="brand" href="./" aria-label="Church Connect home">
+        <span class="brand-mark" aria-hidden="true"><svg class="icon">
+            <use href="#i-church" />
+          </svg></span>
+        <span class="brand-text">
+          <span class="brand-church" id="churchName">Your Church Name</span>
+          <span class="brand-product">Church Connect</span>
+        </span>
+      </a>
+
+      <!-- Add future pages here, for example: <a href="followup.html">Follow-up</a> -->
+      <nav class="main-nav" aria-label="Main">
+        <a href="./" aria-current="page">Register</a>
+      </nav>
+
+      <div class="status-pill" id="statusPill" data-state="checking" role="status">
+        <span class="status-dot" aria-hidden="true"></span>
+        <span id="statusText">Checking connection</span>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" class="shell">
+    <section class="welcome" id="welcome" aria-labelledby="welcomeTitle">
+      <h1 id="welcomeTitle">Every Connection Matters.</h1>
+      <p class="welcome-lead">Capture each connection, welcome every newcomer, and help everyone feel at home in our
+        church family.</p>
+      <p class="welcome-note">Complete one form for each person you greet. Only the name, phone number and service date
+        are required.</p>
+    </section>
+
+    <div class="workspace">
+      <div class="workspace-main">
+        <div id="setupBanner" class="banner" hidden></div>
+
+        <div class="type-block" id="typeBlock">
+          <p class="block-label" id="typeLabel">Who are you registering?</p>
+          <div class="type-selector" id="typeSelector" role="radiogroup" aria-labelledby="typeLabel">
+            <span class="type-thumb" id="typeThumb" aria-hidden="true"></span>
+            <label class="type-option is-selected">
+              <input type="radio" name="contactType" value="Newcomer" checked />
+              <svg class="icon icon-lg" aria-hidden="true">
+                <use href="#i-user-plus" />
+              </svg>
+              <span class="type-copy"><strong>Newcomer / First-Time Visitor</strong><small>Someone new to our
+                  church</small></span>
+            </label>
+            <label class="type-option">
+              <input type="radio" name="contactType" value="Existing Member" />
+              <svg class="icon icon-lg" aria-hidden="true">
+                <use href="#i-users" />
+              </svg>
+              <span class="type-copy"><strong>Existing Church Member</strong><small>Already part of our
+                  family</small></span>
+            </label>
+          </div>
+        </div>
+
+        <section class="card form-card" id="formCard" aria-labelledby="formTitle">
+          <h2 id="formTitle" class="card-title">Registration details</h2>
+          <p class="card-sub">Fields marked <span class="req">*</span> are required.</p>
+
+          <form id="regForm" novalidate autocomplete="off">
+            <fieldset class="group">
+              <legend>Contact details</legend>
+              <div class="grid">
+                <div class="field span-2">
+                  <label for="fullName">Full name <span class="req">*</span></label>
+                  <input id="fullName" name="fullName" type="text" autocomplete="off" maxlength="100"
+                    placeholder="e.g. Adaeze Okafor" aria-describedby="err-fullName" />
+                  <p class="field-error" id="err-fullName" data-error-for="fullName"></p>
+                </div>
+                <div class="field">
+                  <label for="phone">Phone number <span class="req">*</span></label>
+                  <input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="off" placeholder="08012345678"
+                    aria-describedby="hint-phone err-phone" />
+                  <p class="field-hint" id="hint-phone"></p>
+                  <p class="field-error" id="err-phone" data-error-for="phone"></p>
+                </div>
+                <div class="field">
+                  <label for="email">Email address <span class="opt">optional</span></label>
+                  <input id="email" name="email" type="email" inputmode="email" autocomplete="off"
+                    placeholder="name@example.com" aria-describedby="err-email" />
+                  <p class="field-error" id="err-email" data-error-for="email"></p>
+                </div>
+              </div>
+            </fieldset>
+
+            <fieldset class="group">
+              <legend>Visit details</legend>
+              <div class="grid">
+                <div class="field">
+                  <label for="serviceDate">Service date <span class="req">*</span></label>
+                  <input id="serviceDate" name="serviceDate" type="date" aria-describedby="err-serviceDate" />
+                  <p class="field-error" id="err-serviceDate" data-error-for="serviceDate"></p>
+                </div>
+                <div class="field">
+                  <label for="serviceAttended">Service attended <span class="opt">optional</span></label>
+                  <select id="serviceAttended" name="serviceAttended" data-options="SERVICES">
+                    <option value="">Select service</option>
+                  </select>
+                </div>
+                <div class="field" id="branchField">
+                  <label for="branch">Branch or campus <span class="opt">optional</span></label>
+                  <select id="branch" name="branch" data-options="BRANCHES">
+                    <option value="">Select branch</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label for="ageGroup">Age group <span class="opt">optional</span></label>
+                  <select id="ageGroup" name="ageGroup" data-options="AGE_GROUPS">
+                    <option value="">Select age group</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label for="gender">Gender <span class="opt">optional</span></label>
+                  <select id="gender" name="gender">
+                    <option value="">Select gender</option>
+                    <option>Male</option>
+                    <option>Female</option>
+                    <option>Prefer not to say</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label for="referralSource">How did they hear about us? <span class="opt">optional</span></label>
+                  <select id="referralSource" name="referralSource" data-options="REFERRAL_SOURCES">
+                    <option value="">Select an answer</option>
+                  </select>
+                </div>
+              </div>
+            </fieldset>
+
+            <!-- Newcomer-only -->
+            <fieldset class="group" data-for="Newcomer" id="newcomerGroup">
+              <legend>Follow-up</legend>
+              <div class="grid">
+                <div class="field">
+                  <span class="label" id="lbl-firstVisit">First visit to our church?</span>
+                  <div class="choice-row" role="radiogroup" aria-labelledby="lbl-firstVisit">
+                    <label class="choice"><input type="radio" name="firstVisit" value="Yes"
+                        checked /><span>Yes</span></label>
+                    <label class="choice"><input type="radio" name="firstVisit" value="No" /><span>No, they’ve visited
+                        before</span></label>
+                  </div>
+                </div>
+                <div class="field">
+                  <span class="label" id="lbl-consent">May the church contact them?</span>
+                  <div class="choice-row" role="radiogroup" aria-labelledby="lbl-consent">
+                    <label class="choice"><input type="radio" name="followUpConsent" value="Yes" /><span>Yes, they
+                        agreed</span></label>
+                    <label class="choice"><input type="radio" name="followUpConsent"
+                        value="No" /><span>No</span></label>
+                  </div>
+                  <p class="field-hint">Ask them first. If you skip this, we won’t follow up.</p>
+                </div>
+                <div class="field span-2" id="methodField" hidden>
+                  <label for="followUpMethod">Preferred follow-up method</label>
+                  <select id="followUpMethod" name="followUpMethod">
+                    <option value="Phone call">Phone call</option>
+                    <option value="SMS">SMS</option>
+                    <option value="Email">Email</option>
+                  </select>
+                </div>
+              </div>
+            </fieldset>
+
+            <!-- Member-only -->
+            <fieldset class="group" data-for="Existing Member" id="memberGroup" hidden>
+              <legend>Membership</legend>
+              <div class="grid">
+                <div class="field span-2">
+                  <label for="department">Department or ministry <span class="opt">optional</span></label>
+                  <input id="department" name="department" type="text" list="deptList" maxlength="100"
+                    placeholder="e.g. Choir" />
+                  <datalist id="deptList"></datalist>
+                </div>
+              </div>
+            </fieldset>
+
+            <div class="field group-notes">
+              <label for="notes" id="notesLabel">Notes for the follow-up team <span class="opt">optional</span></label>
+              <textarea id="notes" name="notes" rows="3" maxlength="1000"
+                placeholder="Anything the pastoral team should know" aria-describedby="err-notes"></textarea>
+              <p class="field-error" id="err-notes" data-error-for="notes"></p>
+            </div>
+
+            <!-- Honeypot: real people never see or fill this -->
+            <div class="hp" aria-hidden="true">
+              <label for="website">Leave this empty</label>
+              <input id="website" name="website" type="text" tabindex="-1" autocomplete="off" />
+            </div>
+
+            <p class="privacy">
+              <svg class="icon" aria-hidden="true">
+                <use href="#i-lock" />
+              </svg>
+              <span>This information is collected for church connection and follow-up and is seen only by authorised
+                church staff. Contact is made only with the person’s agreement.</span>
+            </p>
+
+            <div id="formAlert" class="alert" role="alert" hidden></div>
+
+            <div class="actions">
+              <button type="submit" class="btn btn-primary" id="submitBtn">
+                <svg class="icon spin" aria-hidden="true" hidden>
+                  <use href="#i-loader" />
+                </svg>
+                <span id="submitLabel">Register Connection</span>
+              </button>
+            </div>
+          </form>
+        </section>
+
+        <section class="card success-card" id="successPanel" tabindex="-1" aria-live="polite" hidden>
+          <span class="success-icon" id="successIcon"><svg class="icon icon-xl" aria-hidden="true">
+              <use href="#i-check" />
+            </svg></span>
+          <h2 id="successTitle">Connection saved</h2>
+          <p class="success-name" id="successName"></p>
+          <p class="success-detail" id="successDetail"></p>
+          <button type="button" class="btn btn-primary" id="anotherBtn">
+            <svg class="icon" aria-hidden="true">
+              <use href="#i-plus" />
+            </svg>
+            <span>Register Another Person</span>
+          </button>
+        </section>
+      </div>
+
+      <aside class="workspace-side" aria-labelledby="recentTitle">
+        <section class="card recent-card" id="recentCard">
+          <div class="recent-head">
+            <h2 class="card-title" id="recentTitle">Recent registrations</h2>
+            <button type="button" class="link-btn" id="clearRecent" hidden>Clear list</button>
+          </div>
+          <p class="card-sub">This session only. Phone numbers and emails are never shown here.</p>
+          <ul class="recent-list" id="recentList"></ul>
+          <div class="empty" id="recentEmpty">
+            <svg class="icon icon-lg" aria-hidden="true">
+              <use href="#i-inbox" />
+            </svg>
+            <p>No one registered yet. People you save will appear here.</p>
+          </div>
+        </section>
+      </aside>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <p>Church Connect, Phase 1. Keep the registration sheet private to authorised church staff.</p>
+  </footer>
+
+  <script src="js/config.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/motion@11.11.13/dist/motion.js" defer></script>
+  <script src="js/validation.js" defer></script>
+  <script src="js/api.js" defer></script>
+  <script src="js/motion.js" defer></script>
+  <script src="js/app.js" defer></script>
+</body>
+
+</html>

@@ -1,0 +1,11 @@
+{
+  "name": "church-connect",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Church Connect Phase 1: usher registration with Google Sheets",
+  "scripts": {
+    "start": "npx --yes serve . -l 5173",
+    "test": "node tests/run-tests.js",
+    "test:ui": "npm i --no-save jsdom && node tests/ui-smoke.js"
+  }
+}
